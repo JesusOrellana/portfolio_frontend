@@ -1,8 +1,6 @@
-import Dashboard from '@/components/dashboard'
-import React from 'react'
+import { redirect } from "next/navigation";
 
 export default function Index() {
-    return (
-        <Dashboard />
-    )
+  redirect("/dashboard");
+  return null;
 }

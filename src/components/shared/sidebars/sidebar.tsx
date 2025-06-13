@@ -3,6 +3,7 @@ import { User, Code, FileCode, GraduationCap, Trophy, MessageSquare, Mail, Lucid
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { use, useState } from "react";
+import { useRouter } from "next/navigation"
 
 export default function Sidebar() {
 
@@ -14,13 +15,13 @@ export default function Sidebar() {
             <Card className="bg-slate-900/50 border-slate-700/50 backdrop-blur-sm h-full">
                 <CardContent className="p-4">
                     <nav className="space-y-2">
-                        <NavItem icon={User} label="About Me" active />
-                        <NavItem icon={Code} label="Skills" />
-                        <NavItem icon={FileCode} label="Projects" />
-                        <NavItem icon={GraduationCap} label="Education" />
-                        <NavItem icon={Trophy} label="Achievements" />
-                        <NavItem icon={MessageSquare} label="Testimonials" />
-                        <NavItem icon={Mail} label="Contact" />
+                        <NavItem icon={User} label="About Me" active path=""/>
+                        <NavItem icon={Code} label="Skills" path="skills" />
+                        <NavItem icon={FileCode} label="Projects" path="projects"/>
+                        <NavItem icon={GraduationCap} label="Education" path="education"/>
+                        <NavItem icon={Trophy} label="Achievements" path="achievements"/>
+                        <NavItem icon={MessageSquare} label="Testimonials" path="testimonials"/>
+                        <NavItem icon={Mail} label="Contact" path="contact" />
                     </nav>
 
                     <div className="mt-8 pt-6 border-t border-slate-700/50">
@@ -37,9 +38,21 @@ export default function Sidebar() {
     )
 }
 
-function NavItem({ icon: Icon, label, active }: { icon: LucideIcon; label: string; active?: boolean }) {
+function NavItem({ icon: Icon, label, active, path }: { icon: LucideIcon; label: string; active?: boolean, path: string }) {
+
+    const router = useRouter();
+
+    const goPath = (path:string) => {
+        if (path === "") {
+            router.replace("/dashboard");
+        } else {
+            router.replace(`dashboard/${path}`);
+        }
+    }
+
     return (
         <Button
+            onClick={ () => goPath(path) }
             variant="ghost"
             className={`w-full justify-start ${active ? "bg-slate-800/70 text-cyan-400" : "text-slate-400 hover:text-slate-100"}`}
         >
