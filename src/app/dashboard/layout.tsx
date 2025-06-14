@@ -8,10 +8,11 @@ import { useEffect, useState } from "react"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
 
-    const [theme, setTheme] = useState<"dark" | "light">("dark");
+    const [theme, setTheme] = useState("dark");
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setTheme("dark");
         const timer = setTimeout(() => {
             setIsLoading(false)
         }, 2000)

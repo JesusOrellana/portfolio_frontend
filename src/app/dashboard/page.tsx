@@ -1,24 +1,32 @@
 'use client'
 
-import { AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+/* import { AvatarFallback, AvatarImage } from '@/components/ui/avatar' */
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
-import { Slider } from '@/components/ui/slider'
-import { Switch } from '@/components/ui/switch'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Avatar } from '@radix-ui/react-avatar'
-import { Activity, AlertCircle, BarChart3, Check, Code, Command, Cpu, Database, Download, Github, Globe, Info, LineChart, Linkedin, LucideIcon, Mail, MessageSquare, RefreshCw, Shield, Trophy, Zap } from 'lucide-react'
+/* import { Avatar } from '@radix-ui/react-avatar' */
+import { Activity, /* AlertCircle, */ BarChart3, /* Check, */ Code,
+Cpu, Database, /* Download, Info, */LineChart, LucideIcon, RefreshCw} from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 export default function Index() {
 
-    const [frontendSkills, setFrontendSkills] = useState(25);
-    const [backendSkills, setBackendSkills] = useState(30)
-    const [devOpsSkills, setDevOpsSkills] = useState(11)
-    const [skillsLevel, setSkillsLevel] = useState(85)
+    const [frontendSkills, setFrontendSkills] = useState(0);
+    const [backendSkills, setBackendSkills] = useState(0)
+    const [devOpsSkills, setDevOpsSkills] = useState(0)
+
+    useEffect(() => { 
+        // Simulate fetching data
+        const interval = setInterval(() => {
+            setFrontendSkills(prev => Math.min(prev + 1, 25));
+            setBackendSkills(prev => Math.min(prev + 1, 40));
+            setDevOpsSkills(prev => Math.min(prev + 1, 15));
+        }, 125);
+
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div className="col-span-12 md:col-span-9 lg:col-span-7">
@@ -443,7 +451,7 @@ function PerformanceChart() {
     )
 }
 
-function AlertItem({
+/* function AlertItem({
     title,
     time,
     description,
@@ -487,9 +495,9 @@ function AlertItem({
             </div>
         </div>
     )
-}
+} */
 
-function CommunicationItem({
+/* function CommunicationItem({
     sender,
     time,
     message,
@@ -523,7 +531,7 @@ function CommunicationItem({
         </div>
     )
 }
-
+ */
 function StorageItem({
     name,
     total,

@@ -1,14 +1,26 @@
 'use client'
 import { User, Code, FileCode, GraduationCap, Trophy, MessageSquare, Mail, LucideIcon } from "lucide-react"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
-import { use, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"
 
 export default function Sidebar() {
 
     const [skillsLevel, setSkillsLevel] = useState(85);
     const [projectsCompleted, setProjectsCompleted] = useState(24);
+    
+    useEffect(() => {
+        // Simulate fetching data from an API
+        const fetchData = async () => {
+            // Here you would typically fetch data from an API
+            // For this example, we'll just use static values
+            setSkillsLevel(85); // Example skill level
+            setProjectsCompleted(24); // Example projects completed
+        };
+
+        fetchData();
+    }, []);
 
     return (
         < div className="col-span-12 md:col-span-3 lg:col-span-2" >
