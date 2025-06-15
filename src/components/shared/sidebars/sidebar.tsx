@@ -3,37 +3,45 @@ import { User, Code, FileCode, GraduationCap, Trophy, MessageSquare, Mail, Lucid
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation"
+import { useRouter, usePathname } from "next/navigation"
+import path from "path";
 
 export default function Sidebar() {
 
     const [skillsLevel, setSkillsLevel] = useState(85);
     const [projectsCompleted, setProjectsCompleted] = useState(24);
-    
+    const pathname = usePathname();
+
     useEffect(() => {
-        // Simulate fetching data from an API
+
         const fetchData = async () => {
-            // Here you would typically fetch data from an API
-            // For this example, we'll just use static values
-            setSkillsLevel(85); // Example skill level
-            setProjectsCompleted(24); // Example projects completed
+            setSkillsLevel(85);
+            setProjectsCompleted(24);
         };
 
         fetchData();
     }, []);
+
+
+    const activePath = (path: string): boolean => {
+        if (path === "") {
+            return pathname === "/dashboard" || pathname === "/dashboard/";
+        }
+        return pathname === `/dashboard/${path}` || pathname === `/dashboard/${path}/`;
+    };
 
     return (
         < div className="col-span-12 md:col-span-3 lg:col-span-2" >
             <Card className="bg-slate-900/50 border-slate-700/50 backdrop-blur-sm h-full">
                 <CardContent className="p-4">
                     <nav className="space-y-2">
-                        <NavItem icon={User} label="About Me" active path=""/>
-                        <NavItem icon={Code} label="Skills" path="skills" />
-                        <NavItem icon={FileCode} label="Projects" path="projects"/>
-                        <NavItem icon={GraduationCap} label="Education" path="education"/>
-                        <NavItem icon={Trophy} label="Achievements" path="achievements"/>
-                        <NavItem icon={MessageSquare} label="Testimonials" path="testimonials"/>
-                        <NavItem icon={Mail} label="Contact" path="contact" />
+                        <NavItem icon={User} label="About Me" path="" active={activePath("")} />
+                        <NavItem icon={Code} label="Skills" path="skills" active={activePath("skills")} />
+                        <NavItem icon={FileCode} label="Projects" path="projects" active={activePath("projects")} />
+                        <NavItem icon={GraduationCap} label="Education" path="education" active={activePath("education")} />
+                        <NavItem icon={Trophy} label="Achievements" path="achievements" active={activePath("achievements")} />
+                        <NavItem icon={MessageSquare} label="Testimonials" path="testimonials" active={activePath("testimonials")} />
+                        <NavItem icon={Mail} label="Contact" path="contact" active={activePath("contact")} />
                     </nav>
 
                     <div className="mt-8 pt-6 border-t border-slate-700/50">
@@ -54,7 +62,7 @@ function NavItem({ icon: Icon, label, active, path }: { icon: LucideIcon; label:
 
     const router = useRouter();
 
-    const goPath = (path:string) => {
+    const goPath = (path: string) => {
         if (path === "") {
             router.replace("/dashboard");
         } else {
@@ -64,9 +72,9 @@ function NavItem({ icon: Icon, label, active, path }: { icon: LucideIcon; label:
 
     return (
         <Button
-            onClick={ () => goPath(path) }
+            onClick={() => goPath(path)}
             variant="ghost"
-            className={`w-full justify-start ${active ? "bg-slate-800/70 text-cyan-400" : "text-slate-400 hover:text-slate-100"}`}
+            className={`w-full justify-start cursor-pointer ${active ? "bg-slate-800/70 text-cyan-400" : "text-slate-400 hover:text-slate-100"}`}
         >
             <Icon className="mr-2 h-4 w-4" />
             {label}

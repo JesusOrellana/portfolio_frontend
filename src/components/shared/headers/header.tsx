@@ -1,9 +1,5 @@
-import { AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
-import { TooltipContent } from "@radix-ui/react-tooltip";
-import { Bell, Hexagon, Moon, Search, Sun } from "lucide-react";
+import { Hexagon, Moon, Sun } from "lucide-react";
 import { useState } from "react";
 
 export default function Header() {
@@ -24,52 +20,15 @@ export default function Header() {
             </div>
 
             <div className="flex items-center space-x-6">
-                <div className="hidden md:flex items-center space-x-1 bg-slate-800/50 rounded-full px-3 py-1.5 border border-slate-700/50 backdrop-blur-sm">
-                    <Search className="h-4 w-4 text-slate-400" />
-                    <input
-                        type="text"
-                        placeholder="Search systems..."
-                        className="bg-transparent border-none focus:outline-none text-sm w-40 placeholder:text-slate-500"
-                    />
-                </div>
-
                 <div className="flex items-center space-x-3">
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" className="relative text-slate-400 hover:text-slate-100">
-                                    <Bell className="h-5 w-5" />
-                                    <span className="absolute -top-1 -right-1 h-2 w-2 bg-cyan-500 rounded-full animate-pulse"></span>
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>Notifications</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
-
-                    <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    onClick={toggleTheme}
-                                    className="text-slate-400 hover:text-slate-100"
-                                >
-                                    {theme === "dark" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                                <p>Toggle theme</p>
-                            </TooltipContent>
-                        </Tooltip>
-                    </TooltipProvider>
-
-                    <Avatar>
-                        <AvatarImage src="/placeholder.svg?height=40&width=40" alt="User" />
-                        <AvatarFallback className="bg-slate-700 text-cyan-500">CM</AvatarFallback>
-                    </Avatar>
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={toggleTheme}
+                        className="text-slate-400 hover:text-slate-100"
+                    >
+                        {theme === "dark" ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+                    </Button>
                 </div>
             </div>
         </header>

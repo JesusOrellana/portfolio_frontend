@@ -7,8 +7,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Progress } from '@/components/ui/progress'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 /* import { Avatar } from '@radix-ui/react-avatar' */
-import { Activity, /* AlertCircle, */ BarChart3, /* Check, */ Code,
-Cpu, Database, /* Download, Info, */LineChart, LucideIcon, RefreshCw} from 'lucide-react'
+import {
+    Activity, /* AlertCircle, */ BarChart3, /* Check, */ Code,
+    Cpu, Database, /* Download, Info, */LineChart, LucideIcon, RefreshCw
+} from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 export default function Index() {
@@ -17,7 +19,7 @@ export default function Index() {
     const [backendSkills, setBackendSkills] = useState(0)
     const [devOpsSkills, setDevOpsSkills] = useState(0)
 
-    useEffect(() => { 
+    useEffect(() => {
         // Simulate fetching data
         const interval = setInterval(() => {
             setFrontendSkills(prev => Math.min(prev + 1, 25));
@@ -86,20 +88,9 @@ export default function Index() {
                                             value="performance"
                                             className="data-[state=active]:bg-slate-700 data-[state=active]:text-cyan-400"
                                         >
-                                            Skills
+                                            About Me
                                         </TabsTrigger>
-                                        <TabsTrigger
-                                            value="processes"
-                                            className="data-[state=active]:bg-slate-700 data-[state=active]:text-cyan-400"
-                                        >
-                                            Experience
-                                        </TabsTrigger>
-                                        <TabsTrigger
-                                            value="storage"
-                                            className="data-[state=active]:bg-slate-700 data-[state=active]:text-cyan-400"
-                                        >
-                                            Projects
-                                        </TabsTrigger>
+
                                     </TabsList>
 
                                     <div className="flex items-center space-x-2 text-xs text-slate-400">
@@ -119,60 +110,20 @@ export default function Index() {
                                 </div>
 
                                 <TabsContent value="performance" className="mt-0">
-                                    <div className="h-64 w-full relative bg-slate-800/30 rounded-lg border border-slate-700/50 overflow-hidden">
-                                        <PerformanceChart />
-                                        <div className="absolute bottom-4 right-4 bg-slate-900/80 backdrop-blur-sm rounded-md px-3 py-2 border border-slate-700/50">
-                                            <div className="text-xs text-slate-400">Skill Growth</div>
-                                            <div className="text-lg font-mono text-cyan-400">+{frontendSkills}%</div>
-                                        </div>
-                                    </div>
-                                </TabsContent>
+                                    <div className="h-52 w-full relative bg-slate-800/30 rounded-lg border border-slate-700/50 overflow-hidden">
+                                        <div className="absolute inset-0 flex justify-start p-6">
+                                            <div className="text-slate-400 text-sm">
+                                                <p className="mb-2">
+                                                    Hi! I'm Jesús, a fullstack developer with a strong focus on backend and solid experience building modern applications using NestJS and Next.js. I'm passionate about creating well-structured, scalable, and maintainable solutions across both frontend and backend.
 
-                                <TabsContent value="processes" className="mt-0">
-                                    <div className="bg-slate-800/30 rounded-lg border border-slate-700/50 overflow-hidden">
-                                        <div className="grid grid-cols-12 text-xs text-slate-400 p-3 border-b border-slate-700/50 bg-slate-800/50">
-                                            <div className="col-span-3">Period</div>
-                                            <div className="col-span-3">Company</div>
-                                            <div className="col-span-4">Position</div>
-                                            <div className="col-span-2">Tech Stack</div>
-                                        </div>
+                                                    My core strength lies in building clean architectures and robust APIs, integrating databases, authentication, testing, and cloud deployments (especially on AWS). Still, I'm versatile and can adapt quickly to other stacks or technologies depending on project needs.
 
-                                        <div className="divide-y divide-slate-700/30">
-                                            <ProcessRow
-                                                pid="2022 - Present"
-                                                name="Tech Innovations Inc."
-                                                user="Senior Developer"
-                                                status="React, Node.js"
-                                            />
-                                            <ProcessRow
-                                                pid="2020 - 2022"
-                                                name="Digital Solutions"
-                                                user="Full Stack Developer"
-                                                status="Vue, Python"
-                                            />
-                                            <ProcessRow
-                                                pid="2018 - 2020"
-                                                name="WebCraft Agency"
-                                                user="Frontend Developer"
-                                                status="Angular, PHP"
-                                            />
-                                            <ProcessRow
-                                                pid="2016 - 2018"
-                                                name="StartUp Nexus"
-                                                user="Junior Developer"
-                                                status="jQuery, PHP"
-                                            />
-                                        </div>
-                                    </div>
-                                </TabsContent>
+                                                    I've worked in real-world environments for insurance clients and developed personal projects where I apply professional development practices like version control, CI/CD, technical documentation, and performance/user experience focus.
 
-                                <TabsContent value="storage" className="mt-0">
-                                    <div className="bg-slate-800/30 rounded-lg border border-slate-700/50 p-4">
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                            <StorageItem name="E-commerce Platform" total={100} used={100} type="React" />
-                                            <StorageItem name="CRM Dashboard" total={100} used={95} type="Vue" />
-                                            <StorageItem name="Mobile Banking App" total={100} used={90} type="React Native" />
-                                            <StorageItem name="AI Content Generator" total={100} used={85} type="Python" />
+                                                    My goal is to keep growing as a developer and bring real value to the teams I work with, always driven by continuous learning and collaboration.
+                                                </p>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </TabsContent>
