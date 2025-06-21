@@ -12,7 +12,7 @@ export default function SidebarInfo() {
                         <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 border-b border-slate-700/50">
                             <div className="text-center">
                                 <div className="text-xs text-slate-500 mb-1 font-mono">DEVELOPER PROFILE</div>
-                                <div className="text-3xl font-mono text-cyan-400 mb-1">Jesús Orellana</div>
+                                <h1 className="text-3xl font-mono text-cyan-400 mb-1">Jesús Orellana</h1>
                                 <div className="text-sm text-slate-400">Full Stack Developer</div>
                             </div>
                         </div>

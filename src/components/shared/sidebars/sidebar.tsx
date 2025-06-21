@@ -4,7 +4,6 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation"
-import path from "path";
 
 export default function Sidebar() {
 
@@ -25,7 +24,7 @@ export default function Sidebar() {
 
     const activePath = (path: string): boolean => {
         if (path === "") {
-            return pathname === "/dashboard" || pathname === "/dashboard/";
+            return pathname === "/dashboard" || pathname === "/dashboard/" || pathname === "/";
         }
         return pathname === `/dashboard/${path}` || pathname === `/dashboard/${path}/`;
     };
