@@ -36,11 +36,11 @@ export default function Sidebar() {
                     <nav className="space-y-2">
                         <NavItem icon={User} label="About Me" path="" active={activePath("")} />
                         <NavItem icon={Code} label="Skills" path="skills" active={activePath("skills")} />
-                        <NavItem icon={FileCode} label="Projects" path="projects" active={activePath("projects")} />
-                        <NavItem icon={GraduationCap} label="Education" path="education" active={activePath("education")} />
-                        <NavItem icon={Trophy} label="Achievements" path="achievements" active={activePath("achievements")} />
-                        <NavItem icon={MessageSquare} label="Testimonials" path="testimonials" active={activePath("testimonials")} />
-                        <NavItem icon={Mail} label="Contact" path="contact" active={activePath("contact")} />
+                        <NavItem icon={FileCode} label="Projects" path="projects" active={activePath("projects")} disable={true}/>
+                        <NavItem icon={GraduationCap} label="Education" path="education" active={activePath("education")} disable={true}/>
+                        <NavItem icon={Trophy} label="Achievements" path="achievements" active={activePath("achievements")} disable={true}/>
+                        <NavItem icon={MessageSquare} label="Testimonials" path="testimonials" active={activePath("testimonials")} disable={true}/>
+                        <NavItem icon={Mail} label="Contact" path="contact" active={activePath("contact")} disable={true}/>
                     </nav>
 
                     <div className="mt-8 pt-6 border-t border-slate-700/50">
@@ -57,7 +57,9 @@ export default function Sidebar() {
     )
 }
 
-function NavItem({ icon: Icon, label, active, path }: { icon: LucideIcon; label: string; active?: boolean, path: string }) {
+function NavItem(
+    { icon: Icon, label, active, path, disable = false }: 
+    { icon: LucideIcon; label: string; active?: boolean, path: string, disable?: boolean }) {
 
     const router = useRouter();
 
@@ -71,9 +73,11 @@ function NavItem({ icon: Icon, label, active, path }: { icon: LucideIcon; label:
 
     return (
         <Button
-            onClick={() => goPath(path)}
+            onClick={() => !disable && goPath(path)}
             variant="ghost"
-            className={`w-full justify-start cursor-pointer ${active ? "bg-slate-800/70 text-cyan-400" : "text-slate-400 hover:text-slate-100"}`}
+            className={`w-full justify-start ${disable ? "opacity-50 cursor-not-allowed" : "cursor-pointer"} ${active ? "bg-slate-800/70 text-cyan-400" : "text-slate-400 hover:text-slate-100"}`}
+            disabled={disable}
+            title={disable ? "Próximamente" : ""}
         >
             <Icon className="mr-2 h-4 w-4" />
             {label}
