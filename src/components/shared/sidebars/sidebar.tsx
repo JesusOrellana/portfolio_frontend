@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useRouter, usePathname } from "next/navigation"
+import { profileData } from "@/data/profile";
 
 export default function Sidebar() {
 
@@ -14,8 +15,8 @@ export default function Sidebar() {
     useEffect(() => {
 
         const fetchData = async () => {
-            setSkillsLevel(85);
-            setProjectsCompleted(24);
+            setSkillsLevel(profileData.stats.skillsMastery);
+            setProjectsCompleted(profileData.stats.projectsCompleted);
         };
 
         fetchData();
@@ -36,11 +37,8 @@ export default function Sidebar() {
                     <nav className="space-y-2">
                         <NavItem icon={User} label="About Me" path="" active={activePath("")} />
                         <NavItem icon={Code} label="Skills" path="skills" active={activePath("skills")} />
-                        <NavItem icon={FileCode} label="Projects" path="projects" active={activePath("projects")} disable={true}/>
-                        <NavItem icon={GraduationCap} label="Education" path="education" active={activePath("education")} disable={true}/>
-                        <NavItem icon={Trophy} label="Achievements" path="achievements" active={activePath("achievements")} disable={true}/>
-                        <NavItem icon={MessageSquare} label="Testimonials" path="testimonials" active={activePath("testimonials")} disable={true}/>
-                        <NavItem icon={Mail} label="Contact" path="contact" active={activePath("contact")} disable={true}/>
+                        <NavItem icon={FileCode} label="Experience" path="experience" active={activePath("experience")} />
+                        <NavItem icon={GraduationCap} label="Education" path="education" active={activePath("education")} />
                     </nav>
 
                     <div className="mt-8 pt-6 border-t border-slate-700/50">
@@ -58,8 +56,8 @@ export default function Sidebar() {
 }
 
 function NavItem(
-    { icon: Icon, label, active, path, disable = false }: 
-    { icon: LucideIcon; label: string; active?: boolean, path: string, disable?: boolean }) {
+    { icon: Icon, label, active, path, disable = false }:
+        { icon: LucideIcon; label: string; active?: boolean, path: string, disable?: boolean }) {
 
     const router = useRouter();
 
@@ -67,7 +65,7 @@ function NavItem(
         if (path === "") {
             router.replace("/dashboard");
         } else {
-            router.replace(`dashboard/${path}`);
+            router.replace(`/dashboard/${path}`);
         }
     }
 

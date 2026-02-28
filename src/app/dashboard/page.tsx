@@ -6,8 +6,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Activity, Code, Cpu, Database, RefreshCw } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import MetricCard from '@/components/shared/cards/metricCard'
+import { profileData } from '@/data/profile'
 
 export default function Index() {
+
+    const maxFrontend = Math.round(profileData.techStack.frontend.reduce((acc, curr) => acc + curr.level, 0) / profileData.techStack.frontend.length);
+    const maxBackend = Math.round(profileData.techStack.backend.reduce((acc, curr) => acc + curr.level, 0) / profileData.techStack.backend.length);
+    const maxDevOps = Math.round(profileData.techStack.cloudAndDevOps.reduce((acc, curr) => acc + curr.level, 0) / profileData.techStack.cloudAndDevOps.length);
 
     const [frontendSkills, setFrontendSkills] = useState(0);
     const [backendSkills, setBackendSkills] = useState(0)
@@ -16,10 +21,10 @@ export default function Index() {
     useEffect(() => {
         // Simulate fetching data
         const interval = setInterval(() => {
-            setFrontendSkills(prev => Math.min(prev + 1, 25));
-            setBackendSkills(prev => Math.min(prev + 1, 40));
-            setDevOpsSkills(prev => Math.min(prev + 1, 15));
-        }, 125);
+            setFrontendSkills(prev => Math.min(prev + 1, maxFrontend));
+            setBackendSkills(prev => Math.min(prev + 1, maxBackend));
+            setDevOpsSkills(prev => Math.min(prev + 1, maxDevOps));
+        }, 15);
 
         return () => clearInterval(interval);
     }, []);
@@ -107,14 +112,8 @@ export default function Index() {
                                     <div className="h-52 w-full relative bg-slate-800/30 rounded-lg border border-slate-700/50 overflow-hidden">
                                         <div className="absolute inset-0 flex justify-start p-6">
                                             <div className="text-slate-400 text-sm">
-                                                <p className="mb-2">
-                                                    Hi! I&apos;m Jesús, a fullstack developer with a strong focus on backend and solid experience building modern applications using NestJS and Next.js. I&apos;m passionate about creating well-structured, scalable, and maintainable solutions across both frontend and backend.
-
-                                                    My core strength lies in building clean architectures and robust APIs, integrating databases, authentication, testing, and cloud deployments (especially on AWS). Still, I&apos;m versatile and can adapt quickly to other stacks or technologies depending on project needs.
-
-                                                    I&apos;ve worked in real-world environments for insurance clients and developed personal projects where I apply professional development practices like version control, CI/CD, technical documentation, and performance/user experience focus.
-
-                                                    My goal is to keep growing as a developer and bring real value to the teams I work with, always driven by continuous learning and collaboration.
+                                                <p className="mb-2 whitespace-pre-line">
+                                                    {profileData.header.summary}
                                                 </p>
 
                                             </div>

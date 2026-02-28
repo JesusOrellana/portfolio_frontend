@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Github, Globe, Linkedin, LucideIcon, Mail } from "lucide-react";
+import { profileData } from "@/data/profile";
 
 export default function SidebarInfo() {
     return (
@@ -12,19 +13,19 @@ export default function SidebarInfo() {
                         <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 border-b border-slate-700/50">
                             <div className="text-center">
                                 <div className="text-xs text-slate-500 mb-1 font-mono">DEVELOPER PROFILE</div>
-                                <h1 className="text-3xl font-mono text-cyan-400 mb-1">Jesús Orellana</h1>
-                                <div className="text-sm text-slate-400">Full Stack Developer</div>
+                                <h1 className="text-3xl font-mono text-cyan-400 mb-1">{profileData.header.name}</h1>
+                                <div className="text-sm text-slate-400">{profileData.header.title}</div>
                             </div>
                         </div>
                         <div className="p-4">
                             <div className="grid grid-cols-2 gap-3">
                                 <div className="bg-slate-800/50 rounded-md p-3 border border-slate-700/50">
                                     <div className="text-xs text-slate-500 mb-1">Location</div>
-                                    <div className="text-sm font-mono text-slate-200">Santiago, Chile</div>
+                                    <div className="text-sm font-mono text-slate-200">{profileData.header.location}</div>
                                 </div>
                                 <div className="bg-slate-800/50 rounded-md p-3 border border-slate-700/50">
                                     <div className="text-xs text-slate-500 mb-1">Experience</div>
-                                    <div className="text-sm font-mono text-slate-200">4+ Years</div>
+                                    <div className="text-sm font-mono text-slate-200">{profileData.header.experienceYears}</div>
                                 </div>
                             </div>
                         </div>
@@ -37,11 +38,10 @@ export default function SidebarInfo() {
                         <CardTitle className="text-slate-100 text-base">Connect With Me</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="grid grid-cols-2 gap-3">
-                            <ActionButton icon={Github} label="GitHub" />
-                            <ActionButton icon={Linkedin} label="LinkedIn" />
-                            <ActionButton icon={Mail} label="Email" />
-                            <ActionButton icon={Globe} label="Website" />
+                        <div className="grid grid-cols-3 gap-3">
+                            <ActionButton icon={Github} label="GitHub" href={profileData.header.links.github} />
+                            <ActionButton icon={Linkedin} label="LinkedIn" href={profileData.header.links.linkedin} />
+                            <ActionButton icon={Mail} label="Email" href={profileData.header.links.email} />
                         </div>
                     </CardContent>
                 </Card>
@@ -151,14 +151,16 @@ export default function SidebarInfo() {
     );
 }
 
-function ActionButton({ icon: Icon, label }: { icon: LucideIcon; label: string }) {
+function ActionButton({ icon: Icon, label, href }: { icon: LucideIcon; label: string, href: string }) {
     return (
-        <Button
-            variant="outline"
-            className="h-auto py-3 px-3 border-slate-700 bg-slate-800/50 hover:bg-slate-700/50 flex flex-col items-center justify-center space-y-1 w-full"
-        >
-            <Icon className="h-5 w-5 text-cyan-500" />
-            <span className="text-xs">{label}</span>
-        </Button>
+        <a href={href} target="_blank" rel="noopener noreferrer">
+            <Button
+                variant="outline"
+                className="h-auto py-3 px-3 border-slate-700 bg-slate-800/50 hover:bg-slate-700/50 flex flex-col items-center justify-center space-y-1 w-full"
+            >
+                <Icon className="h-5 w-5 text-cyan-500" />
+                <span className="text-xs">{label}</span>
+            </Button>
+        </a>
     )
 }
